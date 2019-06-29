@@ -1,0 +1,24 @@
+language: android
+
+android:
+  components:
+    - tools
+    - build-tools-25.0.3
+    - android-23
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+script:
+  ./gradlew :build :testDebug :connectedAndroidTest -PtravisCi -PdisablePreDex
+
+# blacklist
+branches:
+    except:
+      - master
+
+# whitelist
+branches:
+    only:
+      - API14
+      - Morocco
